@@ -73,9 +73,9 @@ h1 { margin: 0; font-size: 88px; line-height: 84px; font-weight: 900; text-trans
 .empty { padding-bottom: 40px; font-size: 18px; color: var(--muted); }
 
 /* cards */
-.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; padding-bottom: 96px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); grid-auto-rows: 1fr; gap: 20px; padding-bottom: 96px; }
 .card {
-  position: relative; display: flex; flex-direction: column; gap: 12px; min-height: 260px;
+  position: relative; display: flex; flex-direction: column; gap: 12px; min-height: 360px;
   padding: 22px 24px 24px; background: var(--card); border-top: 1px solid var(--line);
   clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 0 100%);
   scroll-margin: 96px;
