@@ -96,11 +96,13 @@ h1 { margin: 0; font-size: 88px; line-height: 84px; font-weight: 900; text-trans
 
 /* footer */
 .footer { background: #08080C; }
-.chequer {
-  height: 24px;
-  background: repeating-conic-gradient(#F2F2F5 0 25%, #08080C 0 50%) 0 0 / 24px 24px;
-  opacity: 0.9;
+/* a straight line that breaks into three slanted blocks, like the speed stripes on a livery */
+.stripe { display: flex; align-items: center; gap: 12px; height: 10px; padding-right: 40px; }
+.stripe-line {
+  flex: 1; height: 100%; background: var(--red);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
 }
+.stripe-block { flex: 0 0 auto; width: 30px; height: 100%; background: var(--red); transform: skewX(-42deg); }
 .footer-body { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; padding-top: 48px; padding-bottom: 32px; }
 .footer-brand { max-width: 520px; display: flex; flex-direction: column; gap: 8px; color: var(--muted); font-size: 15px; line-height: 22px; }
 .footer-brand p { margin: 0; }
@@ -117,7 +119,7 @@ h1 { margin: 0; font-size: 88px; line-height: 84px; font-weight: 900; text-trans
   background: var(--red); color: #FFFFFF; text-decoration: none; font-size: 22px; font-weight: 900;
 }
 .e1-button:hover { background: #FF1A10; color: #FFFFFF; }
-.footer-note { margin: 0; padding-top: 20px; padding-bottom: 32px; border-top: 1px solid #1C1C24; font-size: 13px; color: #6E6E7C; }
+.footer-note { margin: 0 auto; padding-top: 20px; padding-bottom: 32px; border-top: 1px solid #1C1C24; font-size: 13px; color: #6E6E7C; }
 
 /* phones: the cards become a carousel */
 @keyframes nudge { 0%, 100% { transform: translateX(0); } 35%, 55% { transform: translateX(-64px); } }
@@ -147,6 +149,8 @@ h1 { margin: 0; font-size: 88px; line-height: 84px; font-weight: 900; text-trans
   .cards .card:first-child { animation: nudge 1.4s ease-in-out 0.9s 2; }
 
   .footer-title { font-size: 32px; line-height: 34px; }
+  .stripe { padding-right: 20px; gap: 9px; }
+  .stripe-block { width: 22px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

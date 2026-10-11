@@ -1,7 +1,12 @@
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="chequer" aria-hidden="true" />
+      <div className="stripe" aria-hidden="true">
+        <span className="stripe-line" />
+        <span className="stripe-block" />
+        <span className="stripe-block" />
+        <span className="stripe-block" />
+      </div>
       <div className="wrap footer-body">
         <div className="footer-brand">
           <p className="footer-title">E1 Glossary</p>
