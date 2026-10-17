@@ -15,8 +15,9 @@ export default function Footer() {
         <div className="footer-actions">
           <a className="e1-button" href="https://e1.ensite.org" aria-label="Go to E1, the Enhypen MAMA Grand Prix">
             E1
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2"
-                 strokeLinecap="round" aria-hidden="true"><path d="M4 12L12 4M5 4h7v7" /></svg>
+            <svg width="16" height="16" viewBox="0 0 8 8" fill="currentColor" aria-hidden="true">
+              <path d="M3 0h5v5H7V1H3zM5 1h2v1H5zM4 2h2v1H4zM3 3h2v1H3zM2 4h2v1H2zM1 5h2v1H1zM0 6h2v1H0zM0 7h1v1H0z" />
+            </svg>
           </a>
           <a className="footer-link" href="#top">Back to the Grid ↑</a>
         </div>

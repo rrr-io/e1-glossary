@@ -94,8 +94,9 @@ export default function App() {
           {cards.length > 1 && (
             <span className="swipe">
               Swipe
-              <svg width="32" height="16" viewBox="0 0 32 16" fill="none" stroke="currentColor" strokeWidth="2.4"
-                   strokeLinecap="round" strokeLinejoin="round"><path d="M9 2L2 8l7 6M2 8h28" /></svg>
+              <svg width="32" height="18" viewBox="0 0 16 9" fill="currentColor">
+                <path d="M0 4h1v1H0zM1 3h1v3H1zM2 2h1v5H2zM3 1h1v7H3zM4 3h12v3H4z" />
+              </svg>
             </span>
           )}
         </div>
