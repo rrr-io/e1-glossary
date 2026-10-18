@@ -145,7 +145,7 @@ export const TERMS = [
   },
   {
     id: 'race-engineer', term: 'Race Engineer', topic: 'roles',
-    e1: 'Race Strategies',
+    e1: 'Race Strategist',
     definition: "Plans the team's voting strategy: what to vote, when, and how to spread the work across the Pit Crew."
   },
   {

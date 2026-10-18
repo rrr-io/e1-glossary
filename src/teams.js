@@ -9,7 +9,7 @@ const captains = (leader, coLeader) => [
 ]
 
 const pitWall = ({ engineer, system, manual, media }) => [
-  { term: 'race-engineer', role: 'Race Engineer', note: 'Race Strategies', handles: [engineer] },
+  { term: 'race-engineer', role: 'Race Engineer', note: 'Race Strategist', handles: [engineer] },
   {
     term: 'race-steward', role: 'Race Steward', crew: [
       { term: 'e1-system-steward', role: 'E1 System Steward', note: 'Voting Proof Checker', handles: [system] },
