@@ -6,7 +6,6 @@
 export const TOPICS = [
   { id: 'teams', name: 'The teams' },
   { id: 'officials', name: 'Officials and media' },
-  { id: 'weekend', name: 'Race weekend' },
   { id: 'phases', name: 'Race phases' },
   { id: 'results', name: 'Results' },
   { id: 'roles', name: 'Team roles' }
@@ -62,11 +61,6 @@ export const TERMS = [
   {
     id: 'race-calendar', term: 'Race Calendar', topic: 'weekend',
     definition: 'The official schedule outlining the key dates, race events, voting periods, and important milestones throughout the E1 competition.'
-  },
-  {
-    id: 'race-weekend', term: 'Race Weekend', topic: 'weekend',
-    e1: 'Scheduled race activities',
-    definition: 'The schedule of official race activities: voting rounds, shows and deadlines.'
   },
   {
     id: 'free-practice', term: 'Free Practice', topic: 'weekend',

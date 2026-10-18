@@ -23,6 +23,7 @@ export const RACING_TEAMS = [
   {
     id: 'team-jungwon', team: 'Team Jungwon', livery: 'Meowcedes', tag: '#MEOWCEDES', color: '#13A8A0', ink: '#2CD3C9',
     crew: [
+      { term: 'team-manager', role: 'Team Manager', handles: ['baekthemochi']},
       ...captains('wonniesgardn', '02fantasies'),
       ...pitWall({ engineer: 'mywonlywon', system: 'lune_night28', manual: 'yjwbaobei', media: 'rileymeup_' })
     ]
@@ -58,7 +59,11 @@ export const RACING_TEAMS = [
   },
   {
     id: 'team-niki', team: 'Team Ni-ki', livery: 'Rikston Drift', tag: '#RIKSTONDRIFT', color: '#0B8040', ink: '#35C46E',
-    crew: []
+    crew: [
+      { term: 'team-manager', role: 'Team Manager', handles: ['Puma24Girl'] },
+      ...captains('namaewariki', 'HOONK1R0CKSTAR'),
+      ...pitWall({ engineer: 'Enpen_ki', system: 'ninilouves', manual: 'crimlvfate', media: 'wonaerin' })
+    ]
   }
 ]
 

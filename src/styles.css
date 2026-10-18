@@ -106,9 +106,16 @@ h1 {
   scroll-margin: 96px;
 }
 .card.is-focused { --edge: var(--red); }
-.card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
-.card-topic { font-family: var(--pixel); font-size: 9px; line-height: 14px; text-transform: uppercase; color: var(--muted); }
-.card-number { font-family: var(--pixel); font-size: 26px; line-height: 26px; color: #34343F; }
+.card-number { align-self: flex-end; font-family: var(--pixel); font-size: 26px; line-height: 26px; color: #34343F; }
+/* the floppy disk: bottom right of every card */
+.card-save {
+  margin-top: auto; align-self: flex-end; display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; margin-right: -8px; margin-bottom: -8px; padding: 0; border: 0;
+  background: transparent; color: #5A5A68; cursor: pointer;
+}
+.card-save:hover:not(:disabled), .card-save:focus-visible { color: var(--text); }
+.card-save:active:not(:disabled) { color: var(--red); }
+.card-save:disabled { cursor: progress; animation: blink 0.6s steps(1) infinite; }
 .card-term { margin: 0; font-family: var(--pixel); font-weight: 400; font-size: 17px; line-height: 26px; text-transform: uppercase; }
 .card-term a { color: inherit; text-decoration: none; }
 .card-term a:hover { color: var(--red-text); }

@@ -1,4 +1,6 @@
 import { RACING_TEAMS, profileUrl } from './teams.js'
+import { saveTeamImage } from './cardImage.js'
+import SaveButton from './SaveButton.jsx'
 
 function Handles({ handles }) {
   return (
@@ -27,8 +29,9 @@ function Role({ member }) {
   )
 }
 
-/** One Racing Team: its livery, the team name under it, then its crew. Used by the E1 Grid and by the search results. */
-export function TeamCard({ team: t, idPrefix = '' }) {
+/** One Racing Team: its livery, the team name under it, its crew, and a floppy disk to save it as an image.
+ * Used by the E1 Grid and by the search results. */
+export function TeamCard({ team: t, idPrefix = '', onSave = saveTeamImage }) {
   return (
     <article id={`${idPrefix}${t.id}`} className="team" style={{ '--team': t.color, '--team-ink': t.ink ?? t.color }} aria-labelledby={`${idPrefix}${t.id}-title`}>
       <h3 id={`${idPrefix}${t.id}-title`} className="team-name">
@@ -39,6 +42,7 @@ export function TeamCard({ team: t, idPrefix = '' }) {
       {t.crew.length > 0
         ? <ul className="crew">{t.crew.map((m) => <Role key={m.term} member={m} />)}</ul>
         : <p className="crew-soon">Crew coming soon.</p>}
+      <SaveButton label={`Save the ${t.livery} card as an image`} onSave={() => onSave(t)} />
     </article>
   )
 }

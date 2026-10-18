@@ -20,7 +20,7 @@ All the content lives in `src/terms.js`.
 - `e1` is EMGP's official meaning, word for word. Change it only when the official list changes.
 - `definition` explains the term for new fans. A term with no official E1 meaning leaves `e1` out.
 - `list` (optional) adds a short list under the definition: an item with `href` is a link, to X for a handle or to `#team-…` for a team on the E1 Grid.
-- `topic` picks the section; topics are at the top of the file.
+- `topic` groups the terms in the file; it is not shown on the page.
 - `id` is the link to the card: `https://e1-glossary.rrriooo.com/#pit-stop` opens the page on Pit Stop.
 
 ## Editing the Racing Teams
@@ -35,6 +35,7 @@ The crews of the E1 Grid live in `src/teams.js`, one entry per team.
 
 - Search and letter filters add up; letters with no term are turned off. The search also finds Racing Teams by name, livery, hashtag or crew handle, and shows their cards above the terms.
 - "Check the Racing Teams" jumps to the E1 Grid.
+- The floppy disk at the bottom right of every term card and Racing Team card turns it into a 1080×1350 image (`src/cardImage.js`, drawn on a canvas with the page fonts). On phones the share sheet opens, so the image can go straight to Photos or a post; on computers it downloads as `e1-glossary-<term or team id>.png`.
 - On a phone the cards become a carousel you swipe sideways. The first card nudges twice when the page opens, next to a "Swipe" hint and a counter. With reduced motion turned on, nothing moves.
 
 ## Deploy

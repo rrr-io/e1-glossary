@@ -22,7 +22,7 @@ export default function Footer() {
           <a className="footer-link" href="#top">Back to the Grid ↑</a>
         </div>
       </div>
-      <p className="wrap footer-note">Fan-made. Not affiliated with HYBE, BELIFT LAB, CJ ENM or Formula 1.</p>
+      <p className="wrap footer-note">Fan-made. Not affiliated with HYBE, BELIFT LAB or Formula 1.</p>
     </footer>
   )
 }

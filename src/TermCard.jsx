@@ -1,4 +1,6 @@
 import { RACING_TEAMS } from './teams.js'
+import { saveCardImage } from './cardImage.js'
+import SaveButton from './SaveButton.jsx'
 
 const teamById = Object.fromEntries(RACING_TEAMS.map((t) => [t.id, t]))
 
@@ -15,14 +17,11 @@ function ListItem({ item }) {
   return item.label
 }
 
-/** One term, like a driver card: topic, number, the term, its official E1 meaning, then what it means for fans, and an optional list. */
-export default function TermCard({ term, topic, number, focused = false }) {
+/** One term, like a driver card: its race number, the term, its official E1 meaning, then what it means for fans, an optional list, and a floppy disk to save it as an image. */
+export default function TermCard({ term, number, focused = false, onSave = saveCardImage }) {
   return (
     <article id={term.id} className={`card ${focused ? 'is-focused' : ''}`} aria-labelledby={`${term.id}-title`}>
-      <div className="card-head">
-        <span className="card-topic">{topic.name}</span>
-        <span className="card-number" aria-hidden="true">{number}</span>
-      </div>
+      <span className="card-number" aria-hidden="true">{number}</span>
       <h2 id={`${term.id}-title`} className="card-term">
         <a href={`#${term.id}`} aria-label={`${term.term}, link to this term`}>{term.term}</a>
       </h2>
@@ -37,6 +36,7 @@ export default function TermCard({ term, topic, number, focused = false }) {
           ))}
         </ul>
       )}
+      <SaveButton label={`Save the ${term.term} card as an image`} onSave={() => onSave(term, number)} />
     </article>
   )
 }

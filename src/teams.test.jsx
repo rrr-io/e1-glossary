@@ -2,7 +2,7 @@ import { cleanup, render, screen, within } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { RACING_TEAMS, teamsMatching } from './teams.js'
 import { TERMS } from './terms.js'
-import TeamGrid from './TeamGrid.jsx'
+import TeamGrid, { TeamCard } from './TeamGrid.jsx'
 
 const roles = (crew) => crew.flatMap((m) => [m, ...roles(m.crew ?? [])])
 
@@ -32,10 +32,16 @@ describe('the E1 Grid', () => {
     expect(captain.getAttribute('target')).toBe('_blank')
   })
 
-  it('shows a team without a crew yet', () => {
+  it('lists the Rikston Drift crew', () => {
     render(<TeamGrid />)
-    const niki = screen.getByRole('article', { name: /Team Ni-ki/ })
-    expect(within(niki).getByText('Crew coming soon.')).toBeTruthy()
+    const niki = screen.getByRole('article', { name: /Rikston Drift/ })
+    expect(within(niki).getByRole('link', { name: '@namaewariki' }).getAttribute('href')).toBe('https://x.com/namaewariki')
+    expect(within(niki).getByRole('link', { name: '@wonaerin' })).toBeTruthy()
+  })
+
+  it('shows a team without a crew yet', () => {
+    render(<TeamCard team={{ id: 'team-new', team: 'Team New', livery: 'New Livery', tag: '#NEW', color: '#888', crew: [] }} />)
+    expect(screen.getByText('Crew coming soon.')).toBeTruthy()
   })
 })
 
@@ -57,7 +63,7 @@ describe('the Racing Teams card', () => {
   it('shows each hashtag in its team colour and links to the team', async () => {
     const { default: TermCard } = await import('./TermCard.jsx')
     const term = TERMS.find((t) => t.id === 'racing-team')
-    render(<TermCard term={term} topic={{ name: 'The teams' }} number="02" />)
+    render(<TermCard term={term} number="02" />)
     const tag = screen.getByText('#HOONRARI')
     expect(tag.style.color).toBe('rgb(255, 74, 61)')
     expect(tag.closest('a').getAttribute('href')).toBe('#team-sunghoon')

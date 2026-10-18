@@ -1,12 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { TERMS, TOPICS } from './terms.js'
+import { TERMS } from './terms.js'
 import { filterTerms, lettersIn } from './filter.js'
 import TermCard from './TermCard.jsx'
 import Footer from './Footer.jsx'
 import TeamGrid, { TeamCard } from './TeamGrid.jsx'
 import { teamsMatching } from './teams.js'
 
-const topicById = Object.fromEntries(TOPICS.map((t) => [t.id, t]))
 const numberOf = Object.fromEntries(TERMS.map((t, i) => [t.id, String(i + 1).padStart(2, '0')]))
 const pad = (n) => String(n).padStart(2, '0')
 
@@ -106,7 +105,7 @@ export default function App() {
 
         <section className="wrap cards" aria-label="Terms" ref={track} onScroll={onSwipe}>
           {cards.map((t) => (
-            <TermCard key={t.id} term={t} topic={topicById[t.topic]} number={numberOf[t.id]} focused={focused === t.id} />
+            <TermCard key={t.id} term={t} number={numberOf[t.id]} focused={focused === t.id} />
           ))}
         </section>
 
