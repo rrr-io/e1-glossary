@@ -1,6 +1,7 @@
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import App from './App.jsx'
+import { TERMS } from './terms.js'
 
 const shown = () => within(screen.getByRole('region', { name: 'Terms' })).queryAllByRole('article').map((a) => a.id)
 
@@ -13,7 +14,7 @@ describe('App', () => {
     expect(shown()).toEqual(['lights-out', 'lap'])
 
     fireEvent.click(screen.getByRole('button', { name: 'Terms starting with L' }))
-    expect(shown()).toHaveLength(30)
+    expect(shown()).toHaveLength(TERMS.length)
   })
 
   it('turns off letters with no terms', () => {

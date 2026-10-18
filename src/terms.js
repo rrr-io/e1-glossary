@@ -6,6 +6,7 @@
 export const TOPICS = [
   { id: 'teams', name: 'The teams' },
   { id: 'officials', name: 'Officials and media' },
+  { id: 'weekend', name: 'Race weekend' },
   { id: 'phases', name: 'Race phases' },
   { id: 'results', name: 'Results' },
   { id: 'roles', name: 'Team roles' }

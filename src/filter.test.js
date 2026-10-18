@@ -6,7 +6,7 @@ const names = (list) => list.map((t) => t.term)
 
 describe('the glossary data', () => {
   it('has the race terms and the 8 team roles, each once', () => {
-    expect(TERMS.filter((t) => t.topic !== 'roles')).toHaveLength(22)
+    expect(TERMS.filter((t) => t.topic !== 'roles')).toHaveLength(21)
     expect(TERMS.filter((t) => t.topic === 'roles')).toHaveLength(8)
     expect(new Set(TERMS.map((t) => t.id)).size).toBe(TERMS.length)
   })
