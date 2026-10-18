@@ -3,28 +3,30 @@ import { TERMS, TOPICS } from './terms.js'
 import { filterTerms, lettersIn } from './filter.js'
 import TermCard from './TermCard.jsx'
 import Footer from './Footer.jsx'
+import TeamGrid, { TeamCard } from './TeamGrid.jsx'
+import { teamsMatching } from './teams.js'
 
 const topicById = Object.fromEntries(TOPICS.map((t) => [t.id, t]))
 const numberOf = Object.fromEntries(TERMS.map((t, i) => [t.id, String(i + 1).padStart(2, '0')]))
 const pad = (n) => String(n).padStart(2, '0')
 
 export default function App() {
-  const [topic, setTopic] = useState('all')
   const [letter, setLetter] = useState(null)
   const [query, setQuery] = useState('')
   const [focused, setFocused] = useState(null)
   const [position, setPosition] = useState(0)
   const track = useRef(null)
 
-  const cards = useMemo(() => filterTerms(TERMS, { topic, letter, query }), [topic, letter, query])
-  const letters = useMemo(() => lettersIn(TERMS, topic), [topic])
+  const cards = useMemo(() => filterTerms(TERMS, { letter, query }), [letter, query])
+  const letters = useMemo(() => lettersIn(TERMS), [])
+  const teams = useMemo(() => teamsMatching(query), [query])
 
   // a link to #pit-stop opens the page on that card, whatever the filters were
   useEffect(() => {
     const open = () => {
       const id = decodeURIComponent(window.location.hash.slice(1))
       if (!TERMS.some((t) => t.id === id)) return
-      setTopic('all'); setLetter(null); setQuery(''); setFocused(id)
+      setLetter(null); setQuery(''); setFocused(id)
       requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView?.({ behavior: 'smooth', block: 'center', inline: 'center' }))
     }
     open()
@@ -36,12 +38,7 @@ export default function App() {
   useEffect(() => {
     track.current?.scrollTo?.({ left: 0 })
     setPosition(0)
-  }, [topic, letter, query])
-
-  const pickTopic = (id) => {
-    setTopic(id)
-    if (letter && !lettersIn(TERMS, id).some((l) => l.letter === letter && l.used)) setLetter(null)
-  }
+  }, [letter, query])
 
   const onSwipe = (e) => {
     const first = e.currentTarget.firstElementChild
@@ -60,22 +57,18 @@ export default function App() {
             The whole E1 race in {TERMS.length} terms, from the Grid to the Podium. Learn the lingo, then race
             for ENHYPEN.
           </p>
+          <a className="chip chip-link" href="#racing-teams">
+            Check the Racing Teams
+            <svg width="12" height="12" viewBox="0 0 6 6" fill="currentColor" aria-hidden="true">
+              <path d="M2 0h2v3h2v1H5v1H4v1H2V5H1V4H0V3h2z" />
+            </svg>
+          </a>
           <label className="search">
-            Search a term
-            <input type="search" value={query} placeholder="Pit Stop, Lap, P1…" onChange={(e) => setQuery(e.target.value)} />
+            Search a term or a team
+            <input type="search" value={query} placeholder="Pit Stop, Alpinoo, P1…" onChange={(e) => setQuery(e.target.value)} />
           </label>
         </section>
 
-        <nav className="wrap" aria-label="Topics">
-          <div className="chips">
-            {[{ id: 'all', name: 'All terms' }, ...TOPICS].map((t) => (
-              <button key={t.id} type="button" className="chip" aria-pressed={topic === t.id} onClick={() => pickTopic(t.id)}>
-                {t.name}
-                <span className="chip-count">{t.id === 'all' ? TERMS.length : TERMS.filter((x) => x.topic === t.id).length}</span>
-              </button>
-            ))}
-          </div>
-        </nav>
 
         <nav className="wrap" aria-label="Filter by letter">
           <div className="letters">
@@ -89,6 +82,12 @@ export default function App() {
           </div>
         </nav>
 
+        {teams.length > 0 && (
+          <section className="wrap teams team-results" aria-label="Matching Racing Teams">
+            {teams.map((t) => <TeamCard key={t.id} team={t} idPrefix="found-" />)}
+          </section>
+        )}
+
         <div className="wrap swipe-hint" aria-hidden="true">
           <span>{cards.length ? `${pad(position + 1)} / ${pad(cards.length)}` : ''}</span>
           {cards.length > 1 && (
@@ -101,8 +100,8 @@ export default function App() {
           )}
         </div>
 
-        {cards.length === 0 && (
-          <p className="wrap empty" role="status">No term here. Try another letter or topic.</p>
+        {cards.length === 0 && teams.length === 0 && (
+          <p className="wrap empty" role="status">No term here. Try another letter or word.</p>
         )}
 
         <section className="wrap cards" aria-label="Terms" ref={track} onScroll={onSwipe}>
@@ -110,6 +109,8 @@ export default function App() {
             <TermCard key={t.id} term={t} topic={topicById[t.topic]} number={numberOf[t.id]} focused={focused === t.id} />
           ))}
         </section>
+
+        <TeamGrid />
       </main>
       <Footer />
     </>

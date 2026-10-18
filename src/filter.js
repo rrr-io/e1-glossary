@@ -7,7 +7,7 @@ const normalize = (text) => text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]
 export function matchesQuery(term, query) {
   const q = normalize(query.trim())
   if (!q) return true
-  return normalize([term.term, term.e1, term.definition].join(' ')).includes(q)
+  return normalize([term.term, term.e1 ?? '', term.definition, ...(term.list ?? []).map((i) => `${i.label} ${i.tag ?? ''}`)].join(' ')).includes(q)
 }
 
 /** Topic first, then letter, then search: the three filters add up. */

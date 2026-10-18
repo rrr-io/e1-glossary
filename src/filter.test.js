@@ -5,9 +5,10 @@ import { filterTerms, lettersIn, matchesQuery } from './filter.js'
 const names = (list) => list.map((t) => t.term)
 
 describe('the glossary data', () => {
-  it('has every official E1 term once', () => {
-    expect(TERMS).toHaveLength(20)
-    expect(new Set(TERMS.map((t) => t.id)).size).toBe(20)
+  it('has the race terms and the 8 team roles, each once', () => {
+    expect(TERMS.filter((t) => t.topic !== 'roles')).toHaveLength(22)
+    expect(TERMS.filter((t) => t.topic === 'roles')).toHaveLength(8)
+    expect(new Set(TERMS.map((t) => t.id)).size).toBe(TERMS.length)
   })
 
   it('puts every term in a known topic', () => {
@@ -32,6 +33,7 @@ describe('filterTerms', () => {
   it('searches the term, its E1 meaning and its definition', () => {
     expect(names(filterTerms(TERMS, { query: 'daesang' }))).toEqual(['P1'])
     expect(names(filterTerms(TERMS, { query: 'round 2' }))).toEqual(['Grand Prix'])
+    expect(names(filterTerms(TERMS, { query: 'enhapopbase' }))).toEqual(['Paddock Announcers'])
   })
 
   it('ignores case and accents', () => {
